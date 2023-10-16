@@ -1,0 +1,53 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include "main.h"
+
+/**
+ * _printf - Prints output according to a format.
+ * @format: A character string.
+ *
+ * Return: The number of characters printed (excluding the null byte used to
+ * end output to strings).
+ */
+int _printf(const char *format, ...)
+{
+va_list args;
+int i, len = 0;
+char *str;
+
+va_start(args, format);
+
+for (i = 0; format[i] != '\0'; i++)
+{
+if (format[i] == '%')
+{
+i++;
+switch (format[i])
+{
+case 'c':
+len += _putchar(va_arg(args, int));
+break;
+case 's':
+str = va_arg(args, char *);
+if (str == NULL)
+str = "(null)";
+len += _puts(str);
+break;
+case '%':
+len += _putchar('%');
+break;
+default:
+len += _putchar('%');
+len += _putchar(format[i]);
+}
+}
+else
+{
+len += _putchar(format[i]);
+}
+}
+
+va_end(args);
+
+return (len);
+}
