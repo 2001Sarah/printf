@@ -1,6 +1,8 @@
 #include <limits.h>
 #include <stdio.h>
 #include "main.h"
+#include <stdlib.h>
+#include <time.h>
 
 /**
  * main - Entry point
